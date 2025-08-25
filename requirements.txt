@@ -1,0 +1,47 @@
+# EDVAN DBF Commander - Requirements File
+# Install all dependencies with: pip install -r requirements.txt
+
+# Core GUI Framework
+customtkinter>=5.2.0
+
+# Data Processing and Analysis
+pandas>=2.0.0
+numpy>=1.24.0
+
+# DBF File Handling
+dbfpy3>=1.1.0
+dbf>=0.99.3
+
+# Stata DTA File Support
+pyreadstat>=1.2.0
+
+# Excel Export Support
+openpyxl>=3.1.0
+xlsxwriter>=3.1.0
+
+# XML Processing (included in Python standard library)
+# xml.etree.ElementTree - included
+# xml.dom.minidom - included
+
+# CSV Support (included in Python standard library)
+# csv - included
+
+# Additional Utilities
+pathlib2>=2.3.7; python_version < "3.4"
+
+# Development and Testing (optional)
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional: Enhanced DBF support
+simpledbf>=0.2.6
+
+# Optional: Alternative DBF libraries (if needed)
+# dbfread>=2.0.7
+# pydbf>=0.4.0
+
+# System Requirements:
+# - Python 3.8 or higher
+# - Windows, macOS, or Linux
+# - At least 4GB RAM for handling large DBF files (500MB+)
