@@ -577,8 +577,6 @@ Column Information:
             
             # Get CSV options
             delimiter = self.delimiter_var.get()
-            if delimiter == "\t":
-                delimiter = "\t"  # Handle tab character
             
             encoding = self.encoding_var.get()
             include_headers = self.include_headers.get()
@@ -1351,7 +1349,7 @@ class DBFDataTab(ctk.CTkFrame):
     def update_pagination_info(self):
         """Update pagination information"""
         if self.filtered_df is not None:
-            total_pages = (len(self.filtered_df) - 1) // self.rows_per_page + 1
+            total_pages = (len(self.filtered_df) - 1) // self.rows_per_page + 1 if len(self.filtered_df) > 0 else 1
             current_page_display = self.current_page + 1
             self.page_label.configure(text=f"Page {current_page_display}/{total_pages}")
     
@@ -1641,14 +1639,14 @@ class EDVANDBFCommander(ctk.CTk):
         """Update status bar message"""
         self.status_label.configure(text=message)
     
-    def get_current_tab(self) -> Optional[DBFDataTab]:
-        """Get the currently active data tab"""
+    def get_current_tab(self):
+        """Get the currently active data tab (DBFDataTab or DTADataTab)"""
         current_tab_name = self.notebook.get()
         if current_tab_name and current_tab_name != "Welcome":
             tab = self.notebook.tab(current_tab_name)
-            # Find the DBFDataTab widget in the tab
+            # Find the DBFDataTab or DTADataTab widget in the tab
             for child in tab.winfo_children():
-                if isinstance(child, DBFDataTab):
+                if isinstance(child, (DBFDataTab, DTADataTab)):
                     return child
         return None
     

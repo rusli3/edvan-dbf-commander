@@ -1,6 +1,6 @@
 # EDVAN DBF Commander 🗃️
 
-[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)]()
 
@@ -16,7 +16,7 @@ A modern desktop application for managing and viewing DBF files with a sleek, pr
 - **DBF File Management**: Open, view, edit, and create DBF files
 - **Structure Editor**: Modify DBF table structure and field definitions
 - **SQL Query Support**: Execute SQL queries on DBF files with syntax highlighting
-- **Multi-format Import/Export**: Support for CSV, Excel, XML, HTML, and Stata formats
+- **Multi-format Support**: Export to CSV, Excel, XML, HTML; Import from Stata (.dta)
 
 ### 📊 Data Management
 - **Table View**: Modern data grid with sorting and filtering
@@ -36,18 +36,18 @@ A modern desktop application for managing and viewing DBF files with a sleek, pr
 
 ## 📋 Requirements
 
-- **Python**: 3.7 or higher
+- **Python**: 3.8 or higher
 - **Operating System**: Windows, macOS, or Linux
 - **Memory**: 512 MB RAM minimum (4GB recommended for large files)
 - **Storage**: 50 MB free space
 
 ### Required Python Packages:
 ```
-customtkinter>=5.0.0
-dbf>=3.0.0
-pandas>=1.3.0
-openpyxl>=3.0.0
-Pillow>=8.0.0
+customtkinter>=5.2.0
+dbfpy3>=1.1.0
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
 ```
 
 ### Optional Packages:
@@ -102,6 +102,7 @@ edvan-dbf-commander/
 ├── README.md                  # This file
 ├── CHANGELOG.md               # Version history
 ├── QUICK_START.md             # Quick start guide
+├── PROJECT_READY.md           # Project status and roadmap
 ├── GITHUB_UPLOAD_GUIDE.md     # GitHub upload instructions
 └── sample_*.dbf               # Sample DBF files
 ```
@@ -202,9 +203,9 @@ python edvan_dbf_commander.py
 
 ### Architecture
 - **Main Application**: `EDVANDBFCommander` class
-- **Data Tabs**: `DBFDataTab` class for individual file handling
-- **Dialogs**: Separate classes for Structure Editor, Find/Replace
-- **Performance**: Pagination system for large files
+- **Data Tabs**: `DBFDataTab` class for DBF files, `DTADataTab` for Stata files
+- **Dialogs**: Separate classes for Structure Editor, Find/Replace, CSV Conversion
+- **Performance**: Pagination system for large files (100 rows per page)
 
 ## 🐛 Troubleshooting
 
@@ -289,6 +290,7 @@ For questions or support, please open an issue on GitHub.
 ---
 
 **Made with ❤️ by rusli3**
+**© 2026 EDVAN DBF Commander**
 
 *Professional DBF management made simple.*
 
