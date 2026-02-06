@@ -10,14 +10,12 @@ numpy>=1.24.0
 
 # DBF File Handling
 dbfpy3>=1.1.0
-dbf>=0.99.3
 
-# Stata DTA File Support
+# Stata DTA File Support (Optional)
 pyreadstat>=1.2.0
 
 # Excel Export Support
 openpyxl>=3.1.0
-xlsxwriter>=3.1.0
 
 # XML Processing (included in Python standard library)
 # xml.etree.ElementTree - included
@@ -26,20 +24,10 @@ xlsxwriter>=3.1.0
 # CSV Support (included in Python standard library)
 # csv - included
 
-# Additional Utilities
-pathlib2>=2.3.7; python_version < "3.4"
-
 # Development and Testing (optional)
-pytest>=7.0.0
-black>=23.0.0
-flake8>=6.0.0
-
-# Optional: Enhanced DBF support
-simpledbf>=0.2.6
-
-# Optional: Alternative DBF libraries (if needed)
-# dbfread>=2.0.7
-# pydbf>=0.4.0
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
 
 # System Requirements:
 # - Python 3.8 or higher
