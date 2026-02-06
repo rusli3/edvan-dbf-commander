@@ -59,7 +59,7 @@ pyreadstat>=1.0.0  # For Stata .dta support
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/edvan-dbf-commander.git
+git clone https://github.com/rusli3/edvan-dbf-commander.git
 cd edvan-dbf-commander
 ```
 
@@ -293,4 +293,5 @@ For questions or support, please open an issue on GitHub.
 **© 2026 EDVAN DBF Commander**
 
 *Professional DBF management made simple.*
+
 
