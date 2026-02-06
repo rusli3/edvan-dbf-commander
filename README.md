@@ -3,6 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.1.0-green.svg)]()
 
 A modern desktop application for managing and viewing DBF files with a sleek, professional interface.
 
@@ -16,14 +17,14 @@ A modern desktop application for managing and viewing DBF files with a sleek, pr
 - **DBF File Management**: Open, view, edit, and create DBF files
 - **Structure Editor**: Modify DBF table structure and field definitions
 - **SQL Query Support**: Execute SQL queries on DBF files with syntax highlighting
-- **Multi-format Support**: Export to CSV, Excel, XML, HTML; Import from Stata (.dta)
+- **Multi-format Support**: Export to CSV, Excel, XML, HTML; Import from CSV, XML, Stata (.dta)
 
 ### 📊 Data Management
 - **Table View**: Modern data grid with sorting and filtering
 - **Record Operations**: Add, edit, delete records with validation
 - **Bulk Operations**: Import/export large datasets efficiently
 - **Data Types**: Support for all DBF field types (Character, Numeric, Date, Logical, Memo)
-- **Find & Replace**: Advanced search and replace functionality
+- **Find & Replace**: Advanced search and replace with case-sensitive and partial match options
 - **Pagination**: Handle large files up to 500MB with efficient pagination
 
 ### 🔧 Advanced Features
@@ -31,8 +32,8 @@ A modern desktop application for managing and viewing DBF files with a sleek, pr
 - **Encoding Conversion**: Convert between Windows (ANSI), MS-DOS (OEM), and UTF-8
 - **One-Click Backup**: Create instant backups of your DBF files
 - **Read-Only Mode**: Open files safely without risk of accidental modifications
-- **Logging System**: Comprehensive logging for debugging and monitoring
-- **Error Handling**: Robust error handling with user-friendly messages
+- **Memory Management**: Automatic cleanup when tabs are closed
+- **Temp File Cleanup**: Automatic cleanup of temporary files on startup
 
 ## 📋 Requirements
 
@@ -52,7 +53,7 @@ openpyxl>=3.1.0
 
 ### Optional Packages:
 ```
-pyreadstat>=1.0.0  # For Stata .dta support
+pyreadstat>=1.2.0  # For Stata .dta support
 ```
 
 ## 🚀 Quick Start
@@ -70,7 +71,7 @@ pip install -r requirements.txt
 
 ### 3. (Optional) Install Stata Support
 ```bash
-python install_stata_support.py
+pip install pyreadstat
 ```
 
 ### 4. Create Sample Files
@@ -92,28 +93,45 @@ run_edvan_dbf_commander.bat
 
 ```
 edvan-dbf-commander/
-├── edvan_dbf_commander.py      # Main application
-├── create_sample_dbf.py        # Sample file generator
-├── install_stata_support.py    # Stata support installer
-├── run_edvan_dbf_commander.bat # Windows batch launcher
-├── requirements.txt            # Python dependencies
-├── .gitignore                 # Git ignore rules
-├── LICENSE                    # MIT license
-├── README.md                  # This file
-├── CHANGELOG.md               # Version history
-├── QUICK_START.md             # Quick start guide
-├── PROJECT_READY.md           # Project status and roadmap
-├── GITHUB_UPLOAD_GUIDE.md     # GitHub upload instructions
-└── sample_*.dbf               # Sample DBF files
+├── edvan_dbf_commander.py          # Application launcher
+├── edvan_dbf_commander/            # Main package (v1.1.0)
+│   ├── __init__.py                 # Package initialization
+│   ├── main.py                     # Main application class
+│   ├── dialogs/                    # Dialog components
+│   │   ├── __init__.py
+│   │   ├── structure_dialog.py     # DBF structure editor
+│   │   ├── find_replace_dialog.py  # Find & Replace dialog
+│   │   ├── csv_dialog.py           # CSV conversion dialog
+│   │   └── stata_dialog.py         # Stata conversion dialog
+│   ├── tabs/                       # Data tab components
+│   │   ├── __init__.py
+│   │   ├── base_data_tab.py        # Shared tab functionality
+│   │   ├── dbf_data_tab.py         # DBF file tab
+│   │   └── dta_data_tab.py         # Stata DTA file tab
+│   └── utils/                      # Utility modules
+│       ├── __init__.py
+│       ├── encoding.py             # Encoding conversion
+│       └── import_export.py        # Import/export utilities
+├── create_sample_dbf.py            # Sample file generator
+├── install_stata_support.py        # Stata support installer
+├── run_edvan_dbf_commander.bat     # Windows batch launcher
+├── requirements.txt                # Python dependencies
+├── .gitignore                      # Git ignore rules
+├── LICENSE                         # MIT license
+├── README.md                       # This file
+├── CHANGELOG.md                    # Version history
+└── sample_*.dbf                    # Sample DBF files
 ```
 
 ## 🎮 Usage Guide
 
 ### Opening Files
-1. **New DBF**: File → New DBF... (Ctrl+N)
-2. **Open DBF**: File → Open... (Ctrl+O)
-3. **Read-Only**: File → Open Read-Only...
-4. **Stata Files**: File → Open Stata File (.dta)...
+| Action | Menu | Shortcut |
+|--------|------|----------|
+| New DBF | File → New DBF... | Ctrl+N |
+| Open DBF | File → Open... | Ctrl+O |
+| Open Read-Only | File → Open Read-Only... | - |
+| Open Stata | File → Open Stata File (.dta)... | - |
 
 ### Editing Data
 1. Double-click any cell to edit
@@ -121,18 +139,23 @@ edvan-dbf-commander/
 3. Select rows and click **"Delete Selected"** to remove
 4. Use SQL queries for advanced filtering
 
+### Find & Replace
+1. Open via: Edit → Find & Replace (Ctrl+F)
+2. Enter search text and replacement
+3. Options: Case Sensitive, Partial Match
+4. Use "Find Next", "Replace", or "Replace All"
+
 ### Importing/Exporting
-- **Import CSV**: Data → Import → From CSV...
-- **Export CSV**: Data → Export → To CSV...
-- **Export Excel**: Data → Export → To Excel...
-- **Export XML**: Data → Export → To XML...
-- **Export HTML**: Data → Export → To HTML...
-- **Convert DBF to CSV**: File → Convert DBF to CSV...
-- **Convert Stata to CSV**: File → Convert Stata to CSV...
+| Action | Menu Path |
+|--------|-----------|
+| Import CSV | Data → Import → From CSV... |
+| Import XML | Data → Import → From XML... |
+| Export CSV | Data → Export → To CSV... |
+| Export Excel | Data → Export → To Excel... |
+| Export XML | Data → Export → To XML... |
+| Export HTML | Data → Export → To HTML... |
 
 ### SQL Queries
-1. Use the SQL Query box to filter your data
-2. Example queries:
 ```sql
 SELECT * FROM data WHERE salary > 50000
 SELECT department, AVG(salary) FROM data GROUP BY department
@@ -140,13 +163,13 @@ SELECT COUNT(*) FROM data WHERE active = True
 SELECT * FROM data ORDER BY name
 ```
 
-### Structure Editor
-1. Open via: Edit → Structure Editor... (Ctrl+S)
-2. **Add Field**: Click "Add Field" button
-3. **Edit Field**: Modify name, type, length, decimals
-4. **Reorder Fields**: Use ↑ ↓ buttons
-5. **Delete Field**: Use × button
-6. **Save Changes**: Click "Save Structure"
+### Encoding Conversion
+| Conversion | Menu Path |
+|------------|-----------|
+| ANSI → OEM | Data → Convert Encoding → Windows (ANSI) → MS-DOS (OEM) |
+| OEM → ANSI | Data → Convert Encoding → MS-DOS (OEM) → Windows (ANSI) |
+| ANSI → UTF-8 | Data → Convert Encoding → Windows (ANSI) → UTF-8 |
+| UTF-8 → ANSI | Data → Convert Encoding → UTF-8 → Windows (ANSI) |
 
 ### Keyboard Shortcuts
 
@@ -157,12 +180,11 @@ SELECT * FROM data ORDER BY name
 | Close Tab | Ctrl+W |
 | Backup File | Ctrl+B |
 | Find & Replace | Ctrl+F |
-| Structure Editor | Ctrl+S |
 | Exit Application | Ctrl+Q |
 
 ## 📊 Sample Data
 
-The application includes three sample DBF files:
+The application includes sample DBF files:
 
 | File | Records | Description |
 |------|---------|-------------|
@@ -170,7 +192,7 @@ The application includes three sample DBF files:
 | `sample_products.dbf` | 15 | Product catalog with inventory |
 | `sample_sales.dbf` | 20 | Sales transaction records |
 
-Create additional sample files by running:
+Create sample files:
 ```bash
 python create_sample_dbf.py
 ```
@@ -180,7 +202,7 @@ python create_sample_dbf.py
 ### Setting Up Development Environment
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/edvan-dbf-commander.git
+git clone https://github.com/rusli3/edvan-dbf-commander.git
 cd edvan-dbf-commander
 
 # Create virtual environment
@@ -194,18 +216,17 @@ pip install -r requirements.txt
 python edvan_dbf_commander.py
 ```
 
-### Code Structure
-- **Main Application**: `edvan_dbf_commander.py`
-- **GUI Framework**: CustomTkinter widgets
-- **Data Handling**: DBF and Pandas integration
-- **Error Handling**: Comprehensive try-catch blocks
-- **Logging**: Python logging module
+### Architecture (v1.1.0)
 
-### Architecture
-- **Main Application**: `EDVANDBFCommander` class
-- **Data Tabs**: `DBFDataTab` class for DBF files, `DTADataTab` for Stata files
-- **Dialogs**: Separate classes for Structure Editor, Find/Replace, CSV Conversion
-- **Performance**: Pagination system for large files (100 rows per page)
+The application uses a modular architecture:
+
+- **Main Application**: `EDVANDBFCommander` class in `main.py`
+- **Base Tab**: `BaseDataTab` abstract class with shared functionality
+  - Pagination, SQL queries, sorting, filtering
+  - Memory cleanup, backup functionality
+- **Data Tabs**: `DBFDataTab` and `DTADataTab` extend `BaseDataTab`
+- **Dialogs**: Separate classes for Structure Editor, Find/Replace, CSV/Stata Conversion
+- **Utils**: Encoding conversion, import/export utilities
 
 ## 🐛 Troubleshooting
 
@@ -213,64 +234,47 @@ python edvan_dbf_commander.py
 
 **Application won't start:**
 ```bash
-# Check Python version
-python --version
-
-# Install missing dependencies
-pip install -r requirements.txt
-
-# Run with verbose logging
-python edvan_dbf_commander.py --verbose
+python --version  # Check Python version (3.8+)
+pip install -r requirements.txt  # Install dependencies
 ```
 
 **Stata support not working:**
 ```bash
-# Install pyreadstat
 pip install pyreadstat
-
-# Or use the installer
-python install_stata_support.py
 ```
-
-**File format errors:**
-- Ensure DBF files are not corrupted
-- Check file permissions
-- Try opening with Read-Only mode first
-
-**Large file performance:**
-- Application automatically uses pagination for files >100MB
-- Consider increasing available RAM
-- Close unnecessary applications
 
 **Encoding issues:**
 - Use: Data → Convert Encoding
-- Try ANSI ↔ OEM conversion
-- Try ANSI ↔ UTF-8 conversion
+- Try ANSI ↔ OEM or ANSI ↔ UTF-8 conversion
 
-### Getting Help
-1. Check the [CHANGELOG.md](CHANGELOG.md) for recent updates
-2. Review [QUICK_START.md](QUICK_START.md) for basic usage
-3. Open an issue on GitHub with error details
+**Large file performance:**
+- Application uses pagination (100 rows per page)
+- Consider increasing available RAM
 
 ## 📈 Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
+### v1.1.0 (2026-02-06)
+- **Restructured** project to modular package architecture
+- **Added** `BaseDataTab` for code deduplication
+- **Implemented** Find & Replace with full functionality
+- **Implemented** CSV/XML import utilities
+- **Added** encoding conversion (ANSI/OEM/UTF-8)
+- **Added** automatic memory cleanup on tab close
+- **Added** temporary file cleanup on startup
+- **Cleaned up** redundant dependencies
+
+### v1.0.0
+- Initial release with core DBF management features
+
+See [CHANGELOG.md](CHANGELOG.md) for full version history.
 
 ## 🤝 Contributing
-
-Contributions are welcome! Here's how to contribute:
 
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
 3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
 4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
-
-### Code Style
-- Follow PEP 8 guidelines
-- Use meaningful variable names
-- Add docstrings to functions
-- Include type hints where appropriate
 
 ## 📝 License
 
@@ -279,19 +283,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **CustomTkinter** - Modern GUI framework
-- **DBF Library** - DBF file handling
+- **dbfpy3** - DBF file handling
 - **Pandas** - Data manipulation
 - **Python Community** - Excellent ecosystem
-
-## 📧 Contact
-
-For questions or support, please open an issue on GitHub.
 
 ---
 
 **Made with ❤️ by rusli3**
-**© 2026 EDVAN DBF Commander**
+**© 2026 EDVAN DBF Commander v1.1.0**
 
 *Professional DBF management made simple.*
-
-
